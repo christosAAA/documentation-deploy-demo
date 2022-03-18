@@ -3,7 +3,6 @@ name: Build and Deploy React App to GitHub Pages
 on:
   push:
     branches: [ master ]
-
 jobs:
   build-push-gcr:
     name: Build and Deploy
@@ -26,8 +25,4 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}    
         npm run styleguide:build
         mv styleguide build
-
-    - name: Checkout
-      uses: actions/deploy-pages@v1
-      env:
-        ACTIONS_ID_TOKEN_REQUEST_URL: ${{secrets.ACTIONS_ID_TOKEN_REQUEST_URL}}
+        npm run deploy
