@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.js": "/documentation-deploy-demo/build/bundle.a310a11a.js",
+    "main.js": "/documentation-deploy-demo/build/bundle.8e9cd7e8.js",
     "index.html": "/documentation-deploy-demo/index.html"
   },
   "entrypoints": [
-    "build/bundle.a310a11a.js"
+    "build/bundle.8e9cd7e8.js"
   ]
 }
