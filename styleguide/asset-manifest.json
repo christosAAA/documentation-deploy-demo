@@ -1,0 +1,9 @@
+{
+  "files": {
+    "main.js": "/documentation-deploy-demo/build/bundle.cf0982d8.js",
+    "index.html": "/documentation-deploy-demo/index.html"
+  },
+  "entrypoints": [
+    "build/bundle.cf0982d8.js"
+  ]
+}
