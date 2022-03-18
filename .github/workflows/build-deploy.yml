@@ -1,57 +1,27 @@
-name: Build & deploy
 
+---
+name: Build and Deploy React App to GitHub Pages
 on:
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
+    branches: [ master ]
 jobs:
-  build:
-    name: Build
+  build-push-gcr:
+    name: Build and Deploy
     runs-on: ubuntu-latest
-    
+
     steps:
-    - name: Checkout code
+    - name: Checkout
       uses: actions/checkout@v2
-    
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: 13.x
-    
-    - name: Install NPM packages
-      run: npm ci
-    
-    - name: Build project
-      run: npm run build
-    
-    - name: Run tests
+
+    - name: Build
+      run: npm install
+
+    - name: Test
       run: npm run test
 
-    - name: Upload production-ready build files
-      uses: actions/upload-artifact@v2
-      with:
-        name: production-files
-        path: ./build
-  
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    
-    steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: production-files
-        path: ./build
-
-    - name: Deploy to gh-pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build
+    - name: Deploy
+      run: |
+        git config --global user.name 'christosAAA'
+        git config --global user.email 'christos.atzinas@gmail.com'
+        git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}    
+        npm run deploy
