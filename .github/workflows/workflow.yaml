@@ -4,9 +4,6 @@ on:
   push:
     branches: [ master ]
 
-env:
-  GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
 jobs:
   build-push-gcr:
     name: Build and Deploy
@@ -32,3 +29,5 @@ jobs:
 
     - name: Checkout
       uses: actions/deploy-pages@v1
+      env:
+        ACTIONS_ID_TOKEN_REQUEST_URL: ${{secrets.ACTIONS_ID_TOKEN_REQUEST_URL}}
